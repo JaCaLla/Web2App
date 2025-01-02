@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication with SwiftUI</title>
+</head>
+<body>
+    <h1>Hello world!</h1>
+    <p>This is a HTML page served from a Docker container with Nginx.</p>
+    <button id="sendDataBtn">Send Data to App</button>
+
+    <script>
+        document.getElementById("sendDataBtn").addEventListener("click", function() {
+            var data = "Hello from JavaScript!";
+            // Send data to the native app
+            window.webkit.messageHandlers.callbackHandler.postMessage(data);
+        });
+    </script>
+</body>
+</html>
