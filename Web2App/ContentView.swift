@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var messageFromJS: String = ""
+    @State private var showAlert = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            WebView(url: URL(string: "http://localhost:8080/")!) { message in
+                messageFromJS = message
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding()
+        .onChange(of: messageFromJS) {
+            showAlert.toggle()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Message from JavaScript:"),
+                message: Text("\(messageFromJS)"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 

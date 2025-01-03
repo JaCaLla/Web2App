@@ -1,8 +1,8 @@
-# Usar la imagen base de Nginx
+# Nginx base image
 FROM nginx:alpine
 
-# Copiar el archivo HTML al contenedor
+# Copy HTML file into container
 COPY index.html /usr/share/nginx/html/index.html
 
-# Exponer el puerto 80 (puerto por defecto de Nginx)
+# Expose port 80 (defect port for Nginx)
 EXPOSE 80
